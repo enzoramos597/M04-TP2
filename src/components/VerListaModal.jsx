@@ -42,6 +42,8 @@ const handleEliminarPelicula = (peliculaId) => {
         </div>
       {
         verLista.length > 0 ? (
+          // Contenedor para el scroll:
+          <div className="mt-4 max-h-70 overflow-y-auto">
           <ul className="mt-4">
             {
               verLista.map((pelicula) => (
@@ -57,8 +59,11 @@ const handleEliminarPelicula = (peliculaId) => {
                     
                 </button>
               </li>
+              
             ))}
+
           </ul>
+          </div>
         ) : (
           // Lista vacía: estilo similar a la imagen
             <div className="flex flex-col items-center justify-center text-center text-gray-700 mt-10">
