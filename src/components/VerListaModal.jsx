@@ -1,28 +1,32 @@
 import { useEffect } from "react";
 const VerListaModal = ({isModalOpen, setisModalOpen, verLista, setverLista }) => {
-    if (!isModalOpen) return null;
 
-const handleCloseModal = () => setisModalOpen(false)
-
-const handleEliminarPelicula = (peliculaId) => {
-    setverLista((prevverLista) => prevverLista.filter(pelicula => pelicula.id !== peliculaId));
-    localStorage.setItem('verLista', JSON.stringify(verLista.filter(pelicula => pelicula.id !== peliculaId)));
-}
-
-  // Cerrar con ESC
+ // Cerrar con ESC (esto se debe ejecutar SIEMPRE que el componente se monta)
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        handleCloseModal();
+        setisModalOpen(false);
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleKeyDown);
-
+    document.addEventListener('keydown', handleKeyDown)
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [])
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [setisModalOpen])
+
+  if (!isModalOpen) return null; // Esto va DESPUÉS del useEffect
+
+  const handleCloseModal = () => setisModalOpen(false)
+
+  const handleEliminarPelicula = (peliculaId) => {
+    setverLista((prevverLista) => {
+      const nuevaLista = prevverLista.filter(pelicula => pelicula.id !== peliculaId) 
+      localStorage.setItem('verLista', JSON.stringify(nuevaLista))
+      return nuevaLista;
+    })
+  }
+  
 
   return (
    <div className="fixed inset-0 bg-black/90 flex items-center justify-center <-50"> 

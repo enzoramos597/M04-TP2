@@ -1,4 +1,5 @@
 import pelicula from '../api/movie.json';
+
 const ListaPelicula = ({verLista, setverLista}) => {
 
   const addToVerLista = (peli) => {

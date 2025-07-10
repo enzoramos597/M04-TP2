@@ -3,6 +3,8 @@ import Header from './components/Header'
 import './App.css'
 import VerListaModal from './components/Verlistamodal'
 import ListaPelicula from './components/ListaPelicula'
+import Navbar from './components/NavBar'
+import Footer from './components/Footer'
 
 function App() {
 const [isModalOpen, setisModalOpen] = useState(false)
@@ -16,7 +18,8 @@ const [verLista, setverLista] = useState(() => {
   return (
     <>
       <div>
-        <Header setisModalOpen={setisModalOpen} />
+        {/*<Header  />*/}
+        <Navbar setisModalOpen={setisModalOpen} />
 
         <VerListaModal
         isModalOpen={isModalOpen}
@@ -29,6 +32,8 @@ const [verLista, setverLista] = useState(() => {
         verLista={verLista}
         setverLista={setverLista}
         />
+
+        <Footer/>
       </div>
         
     </>
